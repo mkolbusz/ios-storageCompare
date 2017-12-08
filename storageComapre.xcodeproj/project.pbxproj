@@ -1,0 +1,545 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		ACE570D31FDA9CDF0045296D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE570D21FDA9CDF0045296D /* AppDelegate.swift */; };
+		ACE570D51FDA9CDF0045296D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE570D41FDA9CDF0045296D /* ViewController.swift */; };
+		ACE570D81FDA9CDF0045296D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACE570D61FDA9CDF0045296D /* Main.storyboard */; };
+		ACE570DB1FDA9CDF0045296D /* storageComapre.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ACE570D91FDA9CDF0045296D /* storageComapre.xcdatamodeld */; };
+		ACE570DD1FDA9CDF0045296D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACE570DC1FDA9CDF0045296D /* Assets.xcassets */; };
+		ACE570E01FDA9CDF0045296D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACE570DE1FDA9CDF0045296D /* LaunchScreen.storyboard */; };
+		ACE570EB1FDA9CDF0045296D /* storageComapreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE570EA1FDA9CDF0045296D /* storageComapreTests.swift */; };
+		ACE570F61FDA9CDF0045296D /* storageComapreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE570F51FDA9CDF0045296D /* storageComapreUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		ACE570E71FDA9CDF0045296D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ACE570C71FDA9CDF0045296D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ACE570CE1FDA9CDF0045296D;
+			remoteInfo = storageComapre;
+		};
+		ACE570F21FDA9CDF0045296D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ACE570C71FDA9CDF0045296D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ACE570CE1FDA9CDF0045296D;
+			remoteInfo = storageComapre;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		ACE570CF1FDA9CDF0045296D /* storageComapre.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = storageComapre.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ACE570D21FDA9CDF0045296D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		ACE570D41FDA9CDF0045296D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		ACE570D71FDA9CDF0045296D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		ACE570DA1FDA9CDF0045296D /* storageComapre.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = storageComapre.xcdatamodel; sourceTree = "<group>"; };
+		ACE570DC1FDA9CDF0045296D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ACE570DF1FDA9CDF0045296D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		ACE570E11FDA9CDF0045296D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ACE570E61FDA9CDF0045296D /* storageComapreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = storageComapreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ACE570EA1FDA9CDF0045296D /* storageComapreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = storageComapreTests.swift; sourceTree = "<group>"; };
+		ACE570EC1FDA9CDF0045296D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ACE570F11FDA9CDF0045296D /* storageComapreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = storageComapreUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ACE570F51FDA9CDF0045296D /* storageComapreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = storageComapreUITests.swift; sourceTree = "<group>"; };
+		ACE570F71FDA9CDF0045296D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		ACE570CC1FDA9CDF0045296D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ACE570E31FDA9CDF0045296D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ACE570EE1FDA9CDF0045296D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		ACE570C61FDA9CDF0045296D = {
+			isa = PBXGroup;
+			children = (
+				ACE570D11FDA9CDF0045296D /* storageComapre */,
+				ACE570E91FDA9CDF0045296D /* storageComapreTests */,
+				ACE570F41FDA9CDF0045296D /* storageComapreUITests */,
+				ACE570D01FDA9CDF0045296D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		ACE570D01FDA9CDF0045296D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ACE570CF1FDA9CDF0045296D /* storageComapre.app */,
+				ACE570E61FDA9CDF0045296D /* storageComapreTests.xctest */,
+				ACE570F11FDA9CDF0045296D /* storageComapreUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ACE570D11FDA9CDF0045296D /* storageComapre */ = {
+			isa = PBXGroup;
+			children = (
+				ACE570D21FDA9CDF0045296D /* AppDelegate.swift */,
+				ACE570D41FDA9CDF0045296D /* ViewController.swift */,
+				ACE570D61FDA9CDF0045296D /* Main.storyboard */,
+				ACE570DC1FDA9CDF0045296D /* Assets.xcassets */,
+				ACE570DE1FDA9CDF0045296D /* LaunchScreen.storyboard */,
+				ACE570E11FDA9CDF0045296D /* Info.plist */,
+				ACE570D91FDA9CDF0045296D /* storageComapre.xcdatamodeld */,
+			);
+			path = storageComapre;
+			sourceTree = "<group>";
+		};
+		ACE570E91FDA9CDF0045296D /* storageComapreTests */ = {
+			isa = PBXGroup;
+			children = (
+				ACE570EA1FDA9CDF0045296D /* storageComapreTests.swift */,
+				ACE570EC1FDA9CDF0045296D /* Info.plist */,
+			);
+			path = storageComapreTests;
+			sourceTree = "<group>";
+		};
+		ACE570F41FDA9CDF0045296D /* storageComapreUITests */ = {
+			isa = PBXGroup;
+			children = (
+				ACE570F51FDA9CDF0045296D /* storageComapreUITests.swift */,
+				ACE570F71FDA9CDF0045296D /* Info.plist */,
+			);
+			path = storageComapreUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		ACE570CE1FDA9CDF0045296D /* storageComapre */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ACE570FA1FDA9CDF0045296D /* Build configuration list for PBXNativeTarget "storageComapre" */;
+			buildPhases = (
+				ACE570CB1FDA9CDF0045296D /* Sources */,
+				ACE570CC1FDA9CDF0045296D /* Frameworks */,
+				ACE570CD1FDA9CDF0045296D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = storageComapre;
+			productName = storageComapre;
+			productReference = ACE570CF1FDA9CDF0045296D /* storageComapre.app */;
+			productType = "com.apple.product-type.application";
+		};
+		ACE570E51FDA9CDF0045296D /* storageComapreTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ACE570FD1FDA9CDF0045296D /* Build configuration list for PBXNativeTarget "storageComapreTests" */;
+			buildPhases = (
+				ACE570E21FDA9CDF0045296D /* Sources */,
+				ACE570E31FDA9CDF0045296D /* Frameworks */,
+				ACE570E41FDA9CDF0045296D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ACE570E81FDA9CDF0045296D /* PBXTargetDependency */,
+			);
+			name = storageComapreTests;
+			productName = storageComapreTests;
+			productReference = ACE570E61FDA9CDF0045296D /* storageComapreTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		ACE570F01FDA9CDF0045296D /* storageComapreUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ACE571001FDA9CDF0045296D /* Build configuration list for PBXNativeTarget "storageComapreUITests" */;
+			buildPhases = (
+				ACE570ED1FDA9CDF0045296D /* Sources */,
+				ACE570EE1FDA9CDF0045296D /* Frameworks */,
+				ACE570EF1FDA9CDF0045296D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ACE570F31FDA9CDF0045296D /* PBXTargetDependency */,
+			);
+			name = storageComapreUITests;
+			productName = storageComapreUITests;
+			productReference = ACE570F11FDA9CDF0045296D /* storageComapreUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ACE570C71FDA9CDF0045296D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "Użytkownik Gość";
+				TargetAttributes = {
+					ACE570CE1FDA9CDF0045296D = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
+					ACE570E51FDA9CDF0045296D = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = ACE570CE1FDA9CDF0045296D;
+					};
+					ACE570F01FDA9CDF0045296D = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = ACE570CE1FDA9CDF0045296D;
+					};
+				};
+			};
+			buildConfigurationList = ACE570CA1FDA9CDF0045296D /* Build configuration list for PBXProject "storageComapre" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = ACE570C61FDA9CDF0045296D;
+			productRefGroup = ACE570D01FDA9CDF0045296D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ACE570CE1FDA9CDF0045296D /* storageComapre */,
+				ACE570E51FDA9CDF0045296D /* storageComapreTests */,
+				ACE570F01FDA9CDF0045296D /* storageComapreUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		ACE570CD1FDA9CDF0045296D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ACE570E01FDA9CDF0045296D /* LaunchScreen.storyboard in Resources */,
+				ACE570DD1FDA9CDF0045296D /* Assets.xcassets in Resources */,
+				ACE570D81FDA9CDF0045296D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ACE570E41FDA9CDF0045296D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ACE570EF1FDA9CDF0045296D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ACE570CB1FDA9CDF0045296D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ACE570DB1FDA9CDF0045296D /* storageComapre.xcdatamodeld in Sources */,
+				ACE570D51FDA9CDF0045296D /* ViewController.swift in Sources */,
+				ACE570D31FDA9CDF0045296D /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ACE570E21FDA9CDF0045296D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ACE570EB1FDA9CDF0045296D /* storageComapreTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ACE570ED1FDA9CDF0045296D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ACE570F61FDA9CDF0045296D /* storageComapreUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		ACE570E81FDA9CDF0045296D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ACE570CE1FDA9CDF0045296D /* storageComapre */;
+			targetProxy = ACE570E71FDA9CDF0045296D /* PBXContainerItemProxy */;
+		};
+		ACE570F31FDA9CDF0045296D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ACE570CE1FDA9CDF0045296D /* storageComapre */;
+			targetProxy = ACE570F21FDA9CDF0045296D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		ACE570D61FDA9CDF0045296D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ACE570D71FDA9CDF0045296D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		ACE570DE1FDA9CDF0045296D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ACE570DF1FDA9CDF0045296D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		ACE570F81FDA9CDF0045296D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		ACE570F91FDA9CDF0045296D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		ACE570FB1FDA9CDF0045296D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = storageComapre/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = pl.edu.agh.storageComapre;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		ACE570FC1FDA9CDF0045296D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = storageComapre/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = pl.edu.agh.storageComapre;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		ACE570FE1FDA9CDF0045296D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = storageComapreTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = pl.edu.agh.storageComapreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/storageComapre.app/storageComapre";
+			};
+			name = Debug;
+		};
+		ACE570FF1FDA9CDF0045296D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = storageComapreTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = pl.edu.agh.storageComapreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/storageComapre.app/storageComapre";
+			};
+			name = Release;
+		};
+		ACE571011FDA9CDF0045296D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = storageComapreUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = pl.edu.agh.storageComapreUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = storageComapre;
+			};
+			name = Debug;
+		};
+		ACE571021FDA9CDF0045296D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = storageComapreUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = pl.edu.agh.storageComapreUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = storageComapre;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ACE570CA1FDA9CDF0045296D /* Build configuration list for PBXProject "storageComapre" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ACE570F81FDA9CDF0045296D /* Debug */,
+				ACE570F91FDA9CDF0045296D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ACE570FA1FDA9CDF0045296D /* Build configuration list for PBXNativeTarget "storageComapre" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ACE570FB1FDA9CDF0045296D /* Debug */,
+				ACE570FC1FDA9CDF0045296D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		ACE570FD1FDA9CDF0045296D /* Build configuration list for PBXNativeTarget "storageComapreTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ACE570FE1FDA9CDF0045296D /* Debug */,
+				ACE570FF1FDA9CDF0045296D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		ACE571001FDA9CDF0045296D /* Build configuration list for PBXNativeTarget "storageComapreUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ACE571011FDA9CDF0045296D /* Debug */,
+				ACE571021FDA9CDF0045296D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		ACE570D91FDA9CDF0045296D /* storageComapre.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				ACE570DA1FDA9CDF0045296D /* storageComapre.xcdatamodel */,
+			);
+			currentVersion = ACE570DA1FDA9CDF0045296D /* storageComapre.xcdatamodel */;
+			path = storageComapre.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = ACE570C71FDA9CDF0045296D /* Project object */;
+}
