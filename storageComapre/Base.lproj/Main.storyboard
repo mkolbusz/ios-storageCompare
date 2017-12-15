@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1611" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="uAr-QX-dpW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G17023" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="uAr-QX-dpW">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item 2-->
+        <!--Reading values-->
         <scene sceneID="Smj-C7-H6F">
             <objects>
                 <viewController id="eeb-qY-TWN" sceneMemberID="viewController">
@@ -21,15 +21,29 @@
                     <view key="view" contentMode="scaleToFill" id="JSe-r8-fXo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ObR-Xb-SGl">
+                                <rect key="frame" x="16" y="97" width="343" height="513"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Reading values" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k2A-rO-9ek">
+                                <rect key="frame" x="129" y="28" width="116" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="JIn-xq-Bew"/>
+                    <tabBarItem key="tabBarItem" title="Reading values" id="JIn-xq-Bew"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Ps-Tw-oEj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2249" y="450"/>
+            <point key="canvasLocation" x="2096.8000000000002" y="922.48875562218893"/>
         </scene>
-        <!--Item-->
+        <!--Sensors-->
         <scene sceneID="0ay-N9-Azf">
             <objects>
                 <viewController id="O7v-aZ-s1h" sceneMemberID="viewController">
@@ -40,15 +54,29 @@
                     <view key="view" contentMode="scaleToFill" id="V6o-hT-lOH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="W06-9Z-aSS">
+                                <rect key="frame" x="16" y="99" width="343" height="511"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sensors" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OSW-aO-b09">
+                                <rect key="frame" x="156" y="28" width="62" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="ebd-Ej-u95"/>
+                    <tabBarItem key="tabBarItem" title="Sensors" id="ebd-Ej-u95"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eTk-Mo-z4B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1294" y="924"/>
+            <point key="canvasLocation" x="1293.5999999999999" y="923.38830584707648"/>
         </scene>
-        <!--Item 1-->
+        <!--Results-->
         <scene sceneID="h6A-7G-85n">
             <objects>
                 <viewController id="Xiz-FX-imx" sceneMemberID="viewController">
@@ -132,7 +160,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="D63-9W-cuE" secondAttribute="trailing" id="zhz-Ya-hhb"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="xEb-a1-vQ7"/>
+                    <tabBarItem key="tabBarItem" title="Results" id="xEb-a1-vQ7"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4ZM-pE-D8R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
