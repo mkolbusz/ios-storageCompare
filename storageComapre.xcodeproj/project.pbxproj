@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84FDFE931FF565C500507D9F /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FDFE921FF565C500507D9F /* HomeController.swift */; };
 		ACE570D31FDA9CDF0045296D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE570D21FDA9CDF0045296D /* AppDelegate.swift */; };
 		ACE570D51FDA9CDF0045296D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE570D41FDA9CDF0045296D /* ViewController.swift */; };
 		ACE570D81FDA9CDF0045296D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACE570D61FDA9CDF0045296D /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		84FDFE921FF565C500507D9F /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		ACE570CF1FDA9CDF0045296D /* storageComapre.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = storageComapre.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACE570D21FDA9CDF0045296D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ACE570D41FDA9CDF0045296D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 		ACE570D11FDA9CDF0045296D /* storageComapre */ = {
 			isa = PBXGroup;
 			children = (
+				84FDFE921FF565C500507D9F /* HomeController.swift */,
 				ACE570D21FDA9CDF0045296D /* AppDelegate.swift */,
 				ACE570D41FDA9CDF0045296D /* ViewController.swift */,
 				ACE570D61FDA9CDF0045296D /* Main.storyboard */,
@@ -262,6 +265,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84FDFE931FF565C500507D9F /* HomeController.swift in Sources */,
 				ACE570DB1FDA9CDF0045296D /* storageComapre.xcdatamodeld in Sources */,
 				ACE570D51FDA9CDF0045296D /* ViewController.swift in Sources */,
 				ACE570D31FDA9CDF0045296D /* AppDelegate.swift in Sources */,
@@ -509,6 +513,7 @@
 				ACE570FC1FDA9CDF0045296D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ACE570FD1FDA9CDF0045296D /* Build configuration list for PBXNativeTarget "storageComapreTests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +522,7 @@
 				ACE570FF1FDA9CDF0045296D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ACE571001FDA9CDF0045296D /* Build configuration list for PBXNativeTarget "storageComapreUITests" */ = {
 			isa = XCConfigurationList;
@@ -525,6 +531,7 @@
 				ACE571021FDA9CDF0045296D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
