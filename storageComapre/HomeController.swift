@@ -22,13 +22,18 @@ class HomeController: UIViewController, UITableViewDataSource {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+            }
+    
+   
+    
+    
+    
     
     @IBAction func generateData(_ sender: UIButton) {
-        let n = ["Anna", "Jan", "Krzysztof", "Robert", "Natalia", "Maja", "Julia"];
-        for name in n {
-            sensors.append(name: name)
-        }
-        tableView.reloadData()
+
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -41,6 +46,27 @@ class HomeController: UIViewController, UITableViewDataSource {
         cell.textLabel?.text = sensor.value(forKey: "name") as? String
         return cell
     }
+    
+    func save(name: String, description: String) {
+        print("Home")
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Sensor", in: managedContext)!
+        let sensor = NSManagedObject(entity: entity, insertInto: managedContext)
+        
+        sensor.setValue(name, forKey: "name")
+        sensor.setValue(description, forKey: "description")
+        
+        do {
+            try managedContext.save()
+            sensors.append(sensor)
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+     }
     
 }
 

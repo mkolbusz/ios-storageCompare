@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		842204621FFBD43500EF5050 /* ReadingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842204611FFBD43500EF5050 /* ReadingController.swift */; };
+		84ECB11A1FFB947B0044BBB3 /* SensorsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ECB1191FFB947B0044BBB3 /* SensorsController.swift */; };
 		84FDFE931FF565C500507D9F /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FDFE921FF565C500507D9F /* HomeController.swift */; };
 		ACE570D31FDA9CDF0045296D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE570D21FDA9CDF0045296D /* AppDelegate.swift */; };
 		ACE570D51FDA9CDF0045296D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE570D41FDA9CDF0045296D /* ViewController.swift */; };
@@ -36,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		842204611FFBD43500EF5050 /* ReadingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReadingController.swift; path = ../ReadingController.swift; sourceTree = "<group>"; };
+		84ECB1191FFB947B0044BBB3 /* SensorsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SensorsController.swift; path = ../SensorsController.swift; sourceTree = "<group>"; };
 		84FDFE921FF565C500507D9F /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		ACE570CF1FDA9CDF0045296D /* storageComapre.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = storageComapre.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACE570D21FDA9CDF0045296D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +105,8 @@
 		ACE570D11FDA9CDF0045296D /* storageComapre */ = {
 			isa = PBXGroup;
 			children = (
+				842204611FFBD43500EF5050 /* ReadingController.swift */,
+				84ECB1191FFB947B0044BBB3 /* SensorsController.swift */,
 				84FDFE921FF565C500507D9F /* HomeController.swift */,
 				ACE570D21FDA9CDF0045296D /* AppDelegate.swift */,
 				ACE570D41FDA9CDF0045296D /* ViewController.swift */,
@@ -267,7 +273,9 @@
 			files = (
 				84FDFE931FF565C500507D9F /* HomeController.swift in Sources */,
 				ACE570DB1FDA9CDF0045296D /* storageComapre.xcdatamodeld in Sources */,
+				84ECB11A1FFB947B0044BBB3 /* SensorsController.swift in Sources */,
 				ACE570D51FDA9CDF0045296D /* ViewController.swift in Sources */,
+				842204621FFBD43500EF5050 /* ReadingController.swift in Sources */,
 				ACE570D31FDA9CDF0045296D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
