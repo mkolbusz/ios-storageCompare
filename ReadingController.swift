@@ -9,13 +9,17 @@
 import UIKit
 import CoreData
 
+
+
 class ReadingController: UIViewController, UITableViewDataSource {
     
     var readings:[NSManagedObject] = []
     @IBOutlet weak var readingsTableView: UITableView!
     
     override func viewDidLoad() {
+        readingsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         generateReadings(number: 10)
+        readingsTableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -26,22 +30,21 @@ class ReadingController: UIViewController, UITableViewDataSource {
         let reading = readings[indexPath.row]
         
         let cell = readingsTableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        //        cell.textLabel?.text = sensor.value(forKey: "name") as? String
-        cell.textLabel?.text = reading.value(forKey: "value") as? String
+        cell.textLabel?.text = String(describing: reading.value(forKey: "value")!)
         return cell
     }
     
     func generateReadings(number: Int) {
         
         for _ in 1...number {
-            let value = randomFloat(min: 0, max: 100)
+            let value = randomFloat(min: 0.0, max: 100.0)
             let timestamp = generateRandomDate(daysBack: 365);
             self.save(value: value, timestamp: timestamp!)
         }
     }
     
     func randomFloat(min: Float, max: Float) -> Float {
-        return (Float(arc4random() / 0xFFFFFFFF) * (max - min) + min)
+        return ((Float(arc4random()) / Float(UInt32.max)) * (max - min) + min)
     }
 
     func generateRandomDate(daysBack: Int)-> Date?{
@@ -70,15 +73,31 @@ class ReadingController: UIViewController, UITableViewDataSource {
         let entity = NSEntityDescription.entity(forEntityName: "Reading", in: managedContext)!
         let reading = NSManagedObject(entity: entity, insertInto: managedContext)
         
-        reading.setValue(value, forKey: "value")
-        reading.setValue(timestamp, forKey: "timestamp")
+        
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Sensor")
         
         do {
-            try managedContext.save()
-            readings.append(reading)
+            let sensors = try managedContext.fetch(fetchRequest)
+            let index = Int(arc4random_uniform(UInt32(sensors.count)))
+            if let sensor = sensors[index] as NSManagedObject? {
+                reading.setValue(value, forKey: "value")
+                reading.setValue(timestamp, forKey: "timestamp")
+                reading.setValue(sensor, forKey: "sensor")
+            }
+            
+            do {
+                try managedContext.save()
+                readings.append(reading)
+            } catch let error as NSError {
+                print("Could not save. \(error), \(error.userInfo)")
+            }
+
         } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
+            print("Could not fetch. \(error), \(error.userInfo)")
         }
+
+        
+        
     }
     
 }

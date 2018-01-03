@@ -105,6 +105,7 @@ class SensorsController: UIViewController, UITableViewDataSource {
         sensor.setValue(name, forKey: "name")
         sensor.setValue(description, forKey: "desc")
         
+        
         do {
             try managedContext.save()
             sensors.append(sensor)
