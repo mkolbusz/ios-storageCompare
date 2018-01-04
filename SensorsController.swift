@@ -32,12 +32,7 @@ class SensorsController: UIViewController, UITableViewDataSource {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        if(sensors.isEmpty) {
-            generateSensors(number: 20)
-        }
-        
-        
+    
     }
     
     func loadSensors() {
@@ -55,27 +50,7 @@ class SensorsController: UIViewController, UITableViewDataSource {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
         
-        for sensor in sensors {
-            print("[Sensor] \(String(describing: sensor.value(forKey: "name"))), \(String(describing: sensor.value(forKey: "desc")))")
-        }
         sensorsTableView.reloadData()
-    }
-    
-    func generateSensors(number: Int) {
-        print("generating sensors");
-        for n in 1...number {
-            let name = "S" + (n > 9 ? String(n) : "0"+String(n))
-            let description = "Sensor number " + String(n)
-            self.save(name: name, description: description)
-        }
-        print("generating sensors - end");
-    }
-    
-    
-    
-    
-    @IBAction func generateData(_ sender: UIButton) {
-      
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -92,27 +67,6 @@ class SensorsController: UIViewController, UITableViewDataSource {
         return cell
     }
     
-    func save(name: String, description: String) {
-        print("[Save] Name: \(name), Desc: \(description)")
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
         
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Sensor", in: managedContext)!
-        let sensor = NSManagedObject(entity: entity, insertInto: managedContext)
-        
-        sensor.setValue(name, forKey: "name")
-        sensor.setValue(description, forKey: "desc")
-        
-        
-        do {
-            try managedContext.save()
-            sensors.append(sensor)
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
-        }
-    }
-    
 }
 
