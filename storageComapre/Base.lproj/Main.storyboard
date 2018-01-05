@@ -221,10 +221,16 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tEM-ZP-WuV">
                                         <rect key="frame" x="58" y="0.0" width="254" height="30"/>
                                         <state key="normal" title="Find the largest and smallest number"/>
+                                        <connections>
+                                            <action selector="findLargestAndSmallestReading:" destination="Xiz-FX-imx" eventType="touchUpInside" id="lhk-yS-dJP"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Wu-WM-6Yk">
                                         <rect key="frame" x="37" y="39" width="296" height="30"/>
                                         <state key="normal" title="Calculate average of reading for all sensors"/>
+                                        <connections>
+                                            <action selector="averageOfAllReadings:" destination="Xiz-FX-imx" eventType="touchUpInside" id="lvE-xj-jSI"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="sOg-YY-5AQ">
                                         <rect key="frame" x="0.0" y="78" width="370" height="30"/>
@@ -318,7 +324,7 @@
                     <tabBarItem key="tabBarItem" title="Results" id="xEb-a1-vQ7"/>
                     <connections>
                         <outlet property="numberTxt" destination="gML-yH-Dla" id="noj-ob-AAC"/>
-                        <outlet property="tableView" destination="D63-9W-cuE" id="LFP-7J-JfT"/>
+                        <outlet property="resultsTableView" destination="D63-9W-cuE" id="iPX-Th-Rd1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4ZM-pE-D8R" userLabel="First Responder" sceneMemberID="firstResponder"/>
