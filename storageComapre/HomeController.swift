@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreData
 
 class HomeController: UIViewController {
     
@@ -17,7 +16,20 @@ class HomeController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.generateSensors(number: 20)
+        let docDir = NSSearchPathForDirectoriesInDomains
+        (.documentDirectory, .userDomainMask, true)[0]
+        
+        let dbFilePath = NSURL(fileURLWithPath: docDir).appendingPathComponent("demo.db")?.path
+        
+        var db: OpaquePointer? = nil
+        
+        if sqlite3_open(dbFilePath, &db) == SQLITE_OK {
+            print("ok")
+        } else {
+            print("fail")
+        }
+        
+//        self.generateSensors(number: 20)
         // Do any additional setup after loading the view, typically from a nib.
         title = "Home"
     }
@@ -42,21 +54,7 @@ class HomeController: UIViewController {
     }
     
     @IBAction func clearReadings(_ sender: UIButton) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Reading")
-        let request = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        do {
-            let startTime = NSDate()
-            try managedContext.execute(request)
-            let finishTime = NSDate()
-            let measuredTime = finishTime.timeIntervalSince(startTime as Date)
-            print("clearReadings: \(measuredTime)")
-        } catch let error as NSError {
-            print("Could not delete: \(error), \(error.userInfo)")
-        }
+
         
     }
 
@@ -82,132 +80,23 @@ class HomeController: UIViewController {
     }
     
     func saveReading(value: Float, timestamp: Date) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
         
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Reading", in: managedContext)!
-        let reading = NSManagedObject(entity: entity, insertInto: managedContext)
-        
-        
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Sensor")
-        
-        do {
-            let sensors = try managedContext.fetch(fetchRequest)
-            let index = Int(arc4random_uniform(UInt32(sensors.count)))
-            if let sensor = sensors[index] as NSManagedObject? {
-                reading.setValue(value, forKey: "value")
-                reading.setValue(timestamp, forKey: "timestamp")
-                reading.setValue(sensor, forKey: "sensor")
-            }
-            
-            do {
-                try managedContext.save()
-            } catch let error as NSError {
-                print("Could not save. \(error), \(error.userInfo)")
-            }
-            
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-        }
+
         
     }
     
     @IBAction func findLargestAndSmallestReading(_ sender: UIButton) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Reading")
-        
-        let maxP = NSPredicate(format: "value==max(value)")
-        let minP = NSPredicate(format: "value==min(value)")
-        fetchRequest.predicate = NSCompoundPredicate(orPredicateWithSubpredicates: [maxP, minP])
-        do {
-            let startTime = NSDate()
-            let results = try managedContext.fetch(fetchRequest)
-            let finishTime = NSDate()
-            let measuredTime = finishTime.timeIntervalSince(startTime as Date)
-            print("findLargestAndSmallestReading: \(measuredTime)")
-            let min = results[0]
-            let minSensor: NSManagedObject = min.value(forKey: "sensor") as! NSManagedObject
-            let max = results[1]
-            let maxSensor: NSManagedObject = max.value(forKey: "sensor") as! NSManagedObject
-            resultsTextView.text = ""
-            resultsTextView.text.append("Min: \(min.value(forKey: "value")!) from \(minSensor.value(forKey: "name")!)\nMax: \(max.value(forKey: "value")!) from \(maxSensor.value(forKey: "name")!)")
-        }catch let error as NSError {
-            print("Error: \(error), \(error.userInfo)")
-        }
+    
     }
     
     
     @IBAction func averageOfAllReadings(_ sender: UIButton) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSDictionary>(entityName: "Reading")
-        fetchRequest.resultType = .dictionaryResultType
-        
-        let ex = NSExpression(forFunction: "average:", arguments: [NSExpression(forKeyPath: "value")])
-        let exDesc = NSExpressionDescription()
-        exDesc.name = "avgValue"
-        exDesc.expression = ex
-        exDesc.expressionResultType = .floatAttributeType
-        
-        fetchRequest.propertiesToFetch = [exDesc]
-        
-        do {
-            let startTime = NSDate()
-            let result = try managedContext.fetch(fetchRequest)
-            let finishTime = NSDate()
-            let measuredTime = finishTime.timeIntervalSince(startTime as Date)
-            print("averageOfAllReadings: \(measuredTime)")
-            let avg = result[0].value(forKey: "avgValue")
-            resultsTextView.text = ""
-            resultsTextView.text = "Average value of all readings:\n\(avg!)"
-        }catch let error as NSError {
-            print("Error: \(error), \(error.userInfo)")
-        }
+
 
     }
     
     @IBAction func averageGroupedBySensor(_ sender: Any) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSDictionary>(entityName: "Reading")
-        fetchRequest.resultType = .dictionaryResultType
-        
-        let ex = NSExpression(forFunction: "average:", arguments: [NSExpression(forKeyPath: "value")])
-        let exDesc = NSExpressionDescription()
-        exDesc.name = "avgValue"
-        exDesc.expression = ex
-        exDesc.expressionResultType = .floatAttributeType
-        
-        fetchRequest.propertiesToFetch = [exDesc]
-        fetchRequest.propertiesToGroupBy = ["sensor"]
-        
-        do {
-            let startTime = NSDate()
-            let result = try managedContext.fetch(fetchRequest)
-            let finishTime = NSDate()
-            let measuredTime = finishTime.timeIntervalSince(startTime as Date)
-            print("averageOfAllReadings: \(measuredTime)")
-            resultsTextView.text = ""
-            resultsTextView.text = "Average value of each sensor:\n"
-            for avg in result {
-                resultsTextView.text.append("\(avg.value(forKey: "avgValue")!)\n")
-            }
-            
-        }catch let error as NSError {
-            print("Error: \(error), \(error.userInfo)")
-        }
+  
     }
     
     // SENSORS
@@ -224,40 +113,11 @@ class HomeController: UIViewController {
     }
     
     func saveSensor(name: String, description: String) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Sensor", in: managedContext)!
-        let sensor = NSManagedObject(entity: entity, insertInto: managedContext)
-        
-        sensor.setValue(name, forKey: "name")
-        sensor.setValue(description, forKey: "desc")
-        
-        
-        do {
-            try managedContext.save()
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
-        }
+
     }
 
     func checkIfSensorsGenerated() -> Bool {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return false
-        }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Sensor")
-        
-        do {
-            let number = try managedContext.count(for: fetchRequest)
-            return number  > 0 ? true : false
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-        }
-        return false
     }
     
 }

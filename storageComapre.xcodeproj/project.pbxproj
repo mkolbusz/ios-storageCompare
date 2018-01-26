@@ -11,6 +11,7 @@
 		843FED5B1FFD931B00AEE4A1 /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FED5A1FFD931B00AEE4A1 /* Random.swift */; };
 		84ECB11A1FFB947B0044BBB3 /* SensorsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ECB1191FFB947B0044BBB3 /* SensorsController.swift */; };
 		84FDFE931FF565C500507D9F /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FDFE921FF565C500507D9F /* HomeController.swift */; };
+		AC44E3A9201B6E9D00CADD7C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AC44E3A8201B6E9D00CADD7C /* libsqlite3.tbd */; };
 		ACE570D31FDA9CDF0045296D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE570D21FDA9CDF0045296D /* AppDelegate.swift */; };
 		ACE570D51FDA9CDF0045296D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE570D41FDA9CDF0045296D /* ViewController.swift */; };
 		ACE570D81FDA9CDF0045296D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACE570D61FDA9CDF0045296D /* Main.storyboard */; };
@@ -43,6 +44,8 @@
 		843FED5A1FFD931B00AEE4A1 /* Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Random.swift; sourceTree = "<group>"; };
 		84ECB1191FFB947B0044BBB3 /* SensorsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SensorsController.swift; path = ../SensorsController.swift; sourceTree = "<group>"; };
 		84FDFE921FF565C500507D9F /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		AC44E3A6201B6D0C00CADD7C /* storageComapre-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "storageComapre-Bridging-Header.h"; path = "storageComapre/storageComapre-Bridging-Header.h"; sourceTree = "<group>"; };
+		AC44E3A8201B6E9D00CADD7C /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		ACE570CF1FDA9CDF0045296D /* storageComapre.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = storageComapre.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACE570D21FDA9CDF0045296D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ACE570D41FDA9CDF0045296D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -64,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC44E3A9201B6E9D00CADD7C /* libsqlite3.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,13 +88,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AC44E3A7201B6E9C00CADD7C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AC44E3A8201B6E9D00CADD7C /* libsqlite3.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		ACE570C61FDA9CDF0045296D = {
 			isa = PBXGroup;
 			children = (
+				AC44E3A6201B6D0C00CADD7C /* storageComapre-Bridging-Header.h */,
 				ACE570D11FDA9CDF0045296D /* storageComapre */,
 				ACE570E91FDA9CDF0045296D /* storageComapreTests */,
 				ACE570F41FDA9CDF0045296D /* storageComapreUITests */,
 				ACE570D01FDA9CDF0045296D /* Products */,
+				AC44E3A7201B6E9C00CADD7C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -436,6 +450,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = pl.edu.agh.storageComapre;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "./storageComapre/storageComapre-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -448,6 +463,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = pl.edu.agh.storageComapre;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "./storageComapre/storageComapre-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
