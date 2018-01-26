@@ -38,7 +38,7 @@ class HomeController: UIViewController {
             print("error creating table 'sensors': \(errmsg)")
         }
         
-        if sqlite3_exec(db, "CREATE TABLE IF NOT EXISTS readings (value TEXT NOT NULL PRIMARY KEY, description TEXT, timestamp DATETIME DEFAULT CURRENT_TIMESTAMP, sensor_name TEXT NOT NULL, FOREIGN KEY(sensor_name) REFERENCES sensors(name))", nil, nil, nil) != SQLITE_OK {
+        if sqlite3_exec(db, "CREATE TABLE IF NOT EXISTS readings (value TEXT NOT NULL PRIMARY KEY, description TEXT, timestamp DATETIME, sensor_name TEXT NOT NULL, FOREIGN KEY(sensor_name) REFERENCES sensors(name))", nil, nil, nil) != SQLITE_OK {
             let errmsg = String(cString: sqlite3_errmsg(db)!)
             print("error creating table 'readings': \(errmsg)")
         }
@@ -65,23 +65,31 @@ class HomeController: UIViewController {
         let startTime = NSDate()
         let sensors: [SensorObject] = loadSensors()
         print(sensors);
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
         var insertSQL = "BEGIN TRANSACTION;";
         for _ in 1...number {
             let value = randomFloat(min: 0.0, max: 100.0)
             let timestamp = generateRandomDate(daysBack: 365)
             let sensorName = sensors[Int(arc4random_uniform(UInt32(sensors.count)))].name
-            insertSQL.append("INSERT INTO readings (value, timestamp, sensor_name) VALUES ('\(value)', '\(timestamp)', '\(sensorName)');")
+            insertSQL.append("INSERT INTO readings (value, timestamp, sensor_name) VALUES ('\(value)', '\(dateFormatter.string(from: timestamp))', '\(sensorName)');")
         }
         insertSQL.append("COMMIT;")
+        print(insertSQL)
         if sqlite3_exec(db, insertSQL, nil, nil, nil) != SQLITE_OK {
             let errmsg = String(cString: sqlite3_errmsg(db)!)
             print("error 'generateReadings': \(errmsg)")
             sqlite3_exec(db, "END;", nil, nil, nil)
         }
+        
+        
 
         let finishTime = NSDate()
         let measuredTime = finishTime.timeIntervalSince(startTime as Date)
         print("generateReadings: \(measuredTime)")
+    
     }
     
     
@@ -102,7 +110,7 @@ class HomeController: UIViewController {
         return ((Float(arc4random()) / Float(UInt32.max)) * (max - min) + min)
     }
     
-    func generateRandomDate(daysBack: Int)-> Date?{
+    func generateRandomDate(daysBack: Int)-> Date{
         let day = arc4random_uniform(UInt32(daysBack))+1
         let hour = arc4random_uniform(23)
         let minute = arc4random_uniform(59)
@@ -115,7 +123,7 @@ class HomeController: UIViewController {
         offsetComponents.minute = Int(minute)
         
         let randomDate = gregorian?.date(byAdding: offsetComponents, to: today, options: .init(rawValue: 0) )
-        return randomDate
+        return randomDate!
     }
     
     func saveReading(value: Float, timestamp: Date) {
@@ -124,12 +132,13 @@ class HomeController: UIViewController {
     
     @IBAction func findLargestAndSmallestReading(_ sender: UIButton) {
         var stmt: OpaquePointer? = nil
-        let selectSQL = "SELECT min(value), max(value) FROM readings"
+        let selectSQL = "SELECT min(timestamp), max(timestamp) FROM readings;"
         sqlite3_prepare_v2(db, selectSQL, -1, &stmt, nil)
         resultsTextView.text = ""
         while sqlite3_step(stmt) == SQLITE_ROW {
-            resultsTextView.text.append("Min: \(Float(sqlite3_column_double(stmt, 0)))\n")
-            resultsTextView.text.append("Max: \(Float(sqlite3_column_double(stmt, 1)))")
+            let min = String(cString: sqlite3_column_text(stmt, 0))
+            let max = String(cString: sqlite3_column_text(stmt, 1))
+            resultsTextView.text.append("Min: \(min)\nMax: \(max)")
         }
         sqlite3_finalize(stmt)
     }

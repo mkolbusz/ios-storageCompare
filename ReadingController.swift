@@ -63,7 +63,7 @@ class ReadingController: UIViewController, UITableViewDataSource {
             let s:ReadingObject = ReadingObject()
             s.value = Float(sqlite3_column_double(stmt, 0))
             //s.timestamp = String(cString: sqlite3_column_text(stmt, 1))
-            s.sensor_name = String(cString: sqlite3_column_text(stmt, 2))
+            s.sensor_name = String(cString: sqlite3_column_text(stmt, 2)) + " : " + String(cString: sqlite3_column_text(stmt, 1))
             self.readings.append(s)
         }
         sqlite3_finalize(stmt)
