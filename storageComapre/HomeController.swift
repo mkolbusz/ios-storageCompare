@@ -62,9 +62,8 @@ class HomeController: UIViewController {
     
     
     func generateReadings(number: Int) {
-        let startTime = NSDate()
+        
         let sensors: [SensorObject] = loadSensors()
-        print(sensors);
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -78,14 +77,13 @@ class HomeController: UIViewController {
         }
         insertSQL.append("COMMIT;")
         print(insertSQL)
+        
+        let startTime = NSDate()
         if sqlite3_exec(db, insertSQL, nil, nil, nil) != SQLITE_OK {
             let errmsg = String(cString: sqlite3_errmsg(db)!)
             print("error 'generateReadings': \(errmsg)")
             sqlite3_exec(db, "END;", nil, nil, nil)
         }
-        
-        
-
         let finishTime = NSDate()
         let measuredTime = finishTime.timeIntervalSince(startTime as Date)
         print("generateReadings: \(measuredTime)")
@@ -99,10 +97,14 @@ class HomeController: UIViewController {
     }
     
     @IBAction func clearReadings(_ sender: UIButton) {
+        let startTime = NSDate()
         if sqlite3_exec(db, "DELETE FROM readings", nil, nil, nil) != SQLITE_OK {
             let errmsg = String(cString: sqlite3_errmsg(db)!)
             print("error clearing 'readings': \(errmsg)")
         }
+        let finishTime = NSDate()
+        let measuredTime = finishTime.timeIntervalSince(startTime as Date)
+        print("clearReadings: \(measuredTime)")
     }
 
     
@@ -135,12 +137,17 @@ class HomeController: UIViewController {
         let selectSQL = "SELECT min(timestamp), max(timestamp) FROM readings;"
         sqlite3_prepare_v2(db, selectSQL, -1, &stmt, nil)
         resultsTextView.text = ""
+        
+        let startTime = NSDate()
         while sqlite3_step(stmt) == SQLITE_ROW {
             let min = String(cString: sqlite3_column_text(stmt, 0))
             let max = String(cString: sqlite3_column_text(stmt, 1))
             resultsTextView.text.append("Min: \(min)\nMax: \(max)")
         }
         sqlite3_finalize(stmt)
+        let finishTime = NSDate()
+        let measuredTime = finishTime.timeIntervalSince(startTime as Date)
+        print("findLargestAndSmallestReading: \(measuredTime)")
     }
     
     
@@ -149,10 +156,14 @@ class HomeController: UIViewController {
         let selectSQL = "SELECT avg(value) FROM readings"
         sqlite3_prepare_v2(db, selectSQL, -1, &stmt, nil)
         resultsTextView.text = ""
+        let startTime = NSDate()
         while sqlite3_step(stmt) == SQLITE_ROW {
             resultsTextView.text.append("Average of all readings:\n\(Float(sqlite3_column_double(stmt, 0)))")
         }
         sqlite3_finalize(stmt)
+        let finishTime = NSDate()
+        let measuredTime = finishTime.timeIntervalSince(startTime as Date)
+        print("averageOfAllReadings: \(measuredTime)")
 
     }
     
@@ -162,10 +173,14 @@ class HomeController: UIViewController {
         sqlite3_prepare_v2(db, selectSQL, -1, &stmt, nil)
         resultsTextView.text = "Average of readings by sensor:\n"
         
+        let startTime = NSDate()
         while sqlite3_step(stmt) == SQLITE_ROW {
             resultsTextView.text.append("\(Float(sqlite3_column_double(stmt, 1)))\n")
         }
         sqlite3_finalize(stmt)
+        let finishTime = NSDate()
+        let measuredTime = finishTime.timeIntervalSince(startTime as Date)
+        print("averageGroupedBySensor: \(measuredTime)")
     }
     
     // SENSORS

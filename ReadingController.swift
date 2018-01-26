@@ -56,6 +56,7 @@ class ReadingController: UIViewController, UITableViewDataSource {
     
     
     func loadReadings() {
+        self.readings.removeAll()
         var stmt: OpaquePointer? = nil
         let selectSQL = "SELECT value, timestamp, sensor_name FROM readings;"
         sqlite3_prepare_v2(db, selectSQL, -1, &stmt, nil)
