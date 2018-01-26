@@ -9,24 +9,38 @@
 import UIKit
 import CoreData
 
-class SensorViewTableCell: UITableViewCell {
-   
-    @IBOutlet weak var sensorDescLabel: UILabel!
+class SensorObject {
+    var name: String = ""
+    var decsription: String = ""
+}
+
+class ReadingTableViewCell: UITableViewCell {
+    
     @IBOutlet weak var sensorNameLabel: UILabel!
+    @IBOutlet weak var readingValueLabel: UILabel!
 }
 
 class SensorsController: UIViewController, UITableViewDataSource {
     
     
-    
+    var db: OpaquePointer? = nil
     @IBOutlet weak var sensorsTableView: UITableView!
-    var sensors: [NSManagedObject] = []
+    var sensors: [SensorObject] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         title = "Sensors List"
+        let docDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
         
+        let dbFilePath = NSURL(fileURLWithPath: docDir).appendingPathComponent("demo.db")?.path
+        
+        if sqlite3_open(dbFilePath, &db) == SQLITE_OK {
+            print("ok")
+        } else {
+            print("fail")
+        }
+
         loadSensors();
     }
     
@@ -36,21 +50,18 @@ class SensorsController: UIViewController, UITableViewDataSource {
     }
     
     func loadSensors() {
-        print("Sensors' loading")
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Sensor")
-        
-        do {
-            sensors = try managedContext.fetch(fetchRequest)
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-        }
-        
-        sensorsTableView.reloadData()
+        let selectSQL = "SELECT * FROM sensors"
+        sqlite3_exec(db, selectSQL,
+                     {_, columnCount, values, columns in
+                        print("Next record")
+                        for i in 0 ..< Int(columnCount) {
+                            let s :SensorObject
+                            s.name = String(cString: columns![i]!)
+                            s.decsription = String(cString: values![i]!)
+                            print("  \(s.name):\(s.decsription)")
+                        }
+                        return 0
+        }, nil, nil)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -62,8 +73,8 @@ class SensorsController: UIViewController, UITableViewDataSource {
         
         let cell = sensorsTableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SensorViewTableCell
 //        cell.textLabel?.text = sensor.value(forKey: "name") as? String
-        cell.sensorNameLabel?.text = sensor.value(forKey: "name") as? String
-        cell.sensorDescLabel?.text = sensor.value(forKey: "desc") as? String
+        cell.sensorNameLabel?.text = sensor.name
+        cell.sensorDescLabel?.text = sensor.decsription
         return cell
     }
     

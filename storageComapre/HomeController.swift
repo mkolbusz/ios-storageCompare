@@ -10,28 +10,38 @@ import UIKit
 
 class HomeController: UIViewController {
     
+    var db: OpaquePointer? = nil
     
     @IBOutlet weak var resultsTextView: UITextView!
     @IBOutlet weak var numberTxt: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let docDir = NSSearchPathForDirectoriesInDomains
-        (.documentDirectory, .userDomainMask, true)[0]
+        let docDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
         
         let dbFilePath = NSURL(fileURLWithPath: docDir).appendingPathComponent("demo.db")?.path
         
-        var db: OpaquePointer? = nil
-        
         if sqlite3_open(dbFilePath, &db) == SQLITE_OK {
-            print("ok")
+            createTableIfNotExists()
         } else {
             print("fail")
         }
         
-//        self.generateSensors(number: 20)
+        self.generateSensors(number: 20)
         // Do any additional setup after loading the view, typically from a nib.
         title = "Home"
+    }
+    
+    func createTableIfNotExists() {
+        if sqlite3_exec(db, "CREATE TABLE IF NOT EXISTS sensors (name TEXT NOT NULL PRIMARY KEY, description TEXT)", nil, nil, nil) != SQLITE_OK {
+            let errmsg = String(cString: sqlite3_errmsg(db)!)
+            print("error creating table 'sensors': \(errmsg)")
+        }
+        
+        if sqlite3_exec(db, "CREATE TABLE IF NOT EXISTS readings (value TEXT NOT NULL PRIMARY KEY, description TEXT, timestamp DATETIME DEFAULT CURRENT_TIMESTAMP, sensor_name TEXT NOT NULL, FOREIGN KEY(sensor_name) REFERENCES sensors(name))", nil, nil, nil) != SQLITE_OK {
+            let errmsg = String(cString: sqlite3_errmsg(db)!)
+            print("error creating table 'readings': \(errmsg)")
+        }
     }
     
     
@@ -81,8 +91,6 @@ class HomeController: UIViewController {
     
     func saveReading(value: Float, timestamp: Date) {
         
-
-        
     }
     
     @IBAction func findLargestAndSmallestReading(_ sender: UIButton) {
@@ -105,18 +113,20 @@ class HomeController: UIViewController {
             return
         }
         
+        var insertSQL = "BEGIN TRANSACTION;";
         for n in 1...number {
             let name = "S" + (n > 9 ? String(n) : "0"+String(n))
             let description = "Sensor number " + String(n)
-            self.saveSensor(name: name, description: description)
+            insertSQL.append("INSERT INTO sensors (name, description) VALUES ('\(name)', '\(description)');")
         }
-    }
-    
-    func saveSensor(name: String, description: String) {
-
+        insertSQL.append("COMMIT;")
+        sqlite3_exec(db, insertSQL, nil, nil, nil)
+        
+        
     }
 
     func checkIfSensorsGenerated() -> Bool {
+        
             return false
     }
     
