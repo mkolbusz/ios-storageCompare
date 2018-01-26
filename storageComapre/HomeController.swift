@@ -24,16 +24,19 @@ class HomeController: UIViewController {
     
     
     func generateReadings(number: Int) {
+        let startTime = NSDate()
         for _ in 1...number {
             let value = randomFloat(min: 0.0, max: 100.0)
             let timestamp = generateRandomDate(daysBack: 365)
             self.saveReading(value: value, timestamp: timestamp!)
         }
+        let finishTime = NSDate()
+        let measuredTime = finishTime.timeIntervalSince(startTime as Date)
+        print("generateReadings: \(measuredTime)")
     }
     
     
     @IBAction func generateData(_ sender: UIButton) {
-        print("Generating")
         let number = Int((numberTxt?.text)!)
         self.generateReadings(number: number!)
     }
@@ -46,7 +49,11 @@ class HomeController: UIViewController {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Reading")
         let request = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         do {
+            let startTime = NSDate()
             try managedContext.execute(request)
+            let finishTime = NSDate()
+            let measuredTime = finishTime.timeIntervalSince(startTime as Date)
+            print("clearReadings: \(measuredTime)")
         } catch let error as NSError {
             print("Could not delete: \(error), \(error.userInfo)")
         }
@@ -119,7 +126,11 @@ class HomeController: UIViewController {
         let minP = NSPredicate(format: "value==min(value)")
         fetchRequest.predicate = NSCompoundPredicate(orPredicateWithSubpredicates: [maxP, minP])
         do {
+            let startTime = NSDate()
             let results = try managedContext.fetch(fetchRequest)
+            let finishTime = NSDate()
+            let measuredTime = finishTime.timeIntervalSince(startTime as Date)
+            print("findLargestAndSmallestReading: \(measuredTime)")
             let min = results[0]
             let minSensor: NSManagedObject = min.value(forKey: "sensor") as! NSManagedObject
             let max = results[1]
@@ -150,7 +161,11 @@ class HomeController: UIViewController {
         fetchRequest.propertiesToFetch = [exDesc]
         
         do {
+            let startTime = NSDate()
             let result = try managedContext.fetch(fetchRequest)
+            let finishTime = NSDate()
+            let measuredTime = finishTime.timeIntervalSince(startTime as Date)
+            print("averageOfAllReadings: \(measuredTime)")
             let avg = result[0].value(forKey: "avgValue")
             resultsTextView.text = ""
             resultsTextView.text = "Average value of all readings:\n\(avg!)"
@@ -179,7 +194,11 @@ class HomeController: UIViewController {
         fetchRequest.propertiesToGroupBy = ["sensor"]
         
         do {
+            let startTime = NSDate()
             let result = try managedContext.fetch(fetchRequest)
+            let finishTime = NSDate()
+            let measuredTime = finishTime.timeIntervalSince(startTime as Date)
+            print("averageOfAllReadings: \(measuredTime)")
             resultsTextView.text = ""
             resultsTextView.text = "Average value of each sensor:\n"
             for avg in result {
@@ -190,6 +209,7 @@ class HomeController: UIViewController {
             print("Error: \(error), \(error.userInfo)")
         }
     }
+    
     // SENSORS
     func generateSensors(number: Int) {
         if(self.checkIfSensorsGenerated()){
