@@ -37,8 +37,10 @@ class HomeController: UIViewController {
     
     
     @IBAction func generateData(_ sender: UIButton) {
-        let number = Int((numberTxt?.text)!)
-        self.generateReadings(number: number!)
+
+        if let number = Int((numberTxt?.text)!) {
+            self.generateReadings(number: number)
+        }
     }
     
     @IBAction func clearReadings(_ sender: UIButton) {
@@ -120,23 +122,32 @@ class HomeController: UIViewController {
         }
         
         let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Reading")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Reading")
+        fetchRequest.resultType = .dictionaryResultType
+        let ed = NSExpressionDescription()
+        ed.name = "min"
+        ed.expression = NSExpression(format: "@min.timestamp")
+        ed.expressionResultType = .dateAttributeType
         
-        let maxP = NSPredicate(format: "value==max(value)")
-        let minP = NSPredicate(format: "value==min(value)")
-        fetchRequest.predicate = NSCompoundPredicate(orPredicateWithSubpredicates: [maxP, minP])
+        let ed2 = NSExpressionDescription()
+        ed2.name = "max"
+        ed2.expression = NSExpression(format: "@max.timestamp")
+        ed2.expressionResultType = .dateAttributeType
+
+        fetchRequest.propertiesToFetch = [ed, ed2]
+        
+        
         do {
             let startTime = NSDate()
             let results = try managedContext.fetch(fetchRequest)
+            print(results);
             let finishTime = NSDate()
             let measuredTime = finishTime.timeIntervalSince(startTime as Date)
             print("findLargestAndSmallestReading: \(measuredTime)")
-            let min = results[0]
-            let minSensor: NSManagedObject = min.value(forKey: "sensor") as! NSManagedObject
-            let max = results[1]
-            let maxSensor: NSManagedObject = max.value(forKey: "sensor") as! NSManagedObject
+            let result:NSDictionary = results[0] as! NSDictionary
             resultsTextView.text = ""
-            resultsTextView.text.append("Min: \(min.value(forKey: "value")!) from \(minSensor.value(forKey: "name")!)\nMax: \(max.value(forKey: "value")!) from \(maxSensor.value(forKey: "name")!)")
+            resultsTextView.text.append("Min: \(result.value(forKey: "min")!)\n")
+            resultsTextView.text.append("Max: \(result.value(forKey: "max")!)")
         }catch let error as NSError {
             print("Error: \(error), \(error.userInfo)")
         }
