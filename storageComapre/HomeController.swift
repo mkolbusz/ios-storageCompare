@@ -9,21 +9,17 @@
 import UIKit
 import CoreData
 
-class HomeController: UIViewController, UITableViewDataSource {
+class HomeController: UIViewController {
     
     
-    @IBOutlet weak var resultsTableView: UITableView!
-    
+    @IBOutlet weak var resultsTextView: UITextView!
     @IBOutlet weak var numberTxt: UITextField!
-    
-    var results: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.generateSensors(number: 20)
         // Do any additional setup after loading the view, typically from a nib.
         title = "Home"
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
     }
     
     
@@ -56,20 +52,7 @@ class HomeController: UIViewController, UITableViewDataSource {
         }
         
     }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return results.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let result = results[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath) as! ReadingTableViewCell
-        cell.readingValueLabel?.text = String(describing: result.value(forKey: "value")!)
-        let sensor:NSManagedObject = result.value(forKey: "sensor") as! NSManagedObject
-        
-        cell.sensorNameLabel?.text = String(describing: sensor.value(forKey: "name")!)
-        return cell
-    }
+
     
     func randomFloat(min: Float, max: Float) -> Float {
         return ((Float(arc4random()) / Float(UInt32.max)) * (max - min) + min)
@@ -136,8 +119,13 @@ class HomeController: UIViewController, UITableViewDataSource {
         let minP = NSPredicate(format: "value==min(value)")
         fetchRequest.predicate = NSCompoundPredicate(orPredicateWithSubpredicates: [maxP, minP])
         do {
-            results = try managedContext.fetch(fetchRequest)
-            resultsTableView.reloadData()
+            let results = try managedContext.fetch(fetchRequest)
+            let min = results[0]
+            let minSensor: NSManagedObject = min.value(forKey: "sensor") as! NSManagedObject
+            let max = results[1]
+            let maxSensor: NSManagedObject = max.value(forKey: "sensor") as! NSManagedObject
+            resultsTextView.text = ""
+            resultsTextView.text.append("Min: \(min.value(forKey: "value")!) from \(minSensor.value(forKey: "name")!)\nMax: \(max.value(forKey: "value")!) from \(maxSensor.value(forKey: "name")!)")
         }catch let error as NSError {
             print("Error: \(error), \(error.userInfo)")
         }
@@ -163,16 +151,45 @@ class HomeController: UIViewController, UITableViewDataSource {
         
         do {
             let result = try managedContext.fetch(fetchRequest)
-            results.removeAll()
-            let o:NSManagedObject = NSManagedObject
-            o.setValue(result.first!.value(forKey: "avgValue"), forKey: "value")
-            results.append(o)
+            let avg = result[0].value(forKey: "avgValue")
+            resultsTextView.text = ""
+            resultsTextView.text = "Average value of all readings:\n\(avg!)"
         }catch let error as NSError {
             print("Error: \(error), \(error.userInfo)")
         }
 
     }
     
+    @IBAction func averageGroupedBySensor(_ sender: Any) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSDictionary>(entityName: "Reading")
+        fetchRequest.resultType = .dictionaryResultType
+        
+        let ex = NSExpression(forFunction: "average:", arguments: [NSExpression(forKeyPath: "value")])
+        let exDesc = NSExpressionDescription()
+        exDesc.name = "avgValue"
+        exDesc.expression = ex
+        exDesc.expressionResultType = .floatAttributeType
+        
+        fetchRequest.propertiesToFetch = [exDesc]
+        fetchRequest.propertiesToGroupBy = ["sensor"]
+        
+        do {
+            let result = try managedContext.fetch(fetchRequest)
+            resultsTextView.text = ""
+            resultsTextView.text = "Average value of each sensor:\n"
+            for avg in result {
+                resultsTextView.text.append("\(avg.value(forKey: "avgValue")!)\n")
+            }
+            
+        }catch let error as NSError {
+            print("Error: \(error), \(error.userInfo)")
+        }
+    }
     // SENSORS
     func generateSensors(number: Int) {
         if(self.checkIfSensorsGenerated()){
