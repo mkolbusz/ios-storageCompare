@@ -143,7 +143,7 @@ class HomeController: UIViewController {
             print(results);
             let finishTime = NSDate()
             let measuredTime = finishTime.timeIntervalSince(startTime as Date)
-            print("findLargestAndSmallestReading: \(measuredTime)")
+            print("findLargestAndSmallestTimestamp: \(measuredTime)")
             let result:NSDictionary = results[0] as! NSDictionary
             resultsTextView.text = ""
             resultsTextView.text.append("Min: \(result.value(forKey: "min")!)\n")
