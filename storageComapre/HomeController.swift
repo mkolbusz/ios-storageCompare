@@ -45,13 +45,40 @@ class HomeController: UIViewController {
     }
     
     
+    func loadSensors() -> [SensorObject] {
+        var sensors: [SensorObject] = []
+        var stmt: OpaquePointer? = nil
+        let selectSQL = "SELECT * FROM sensors;"
+        sqlite3_prepare_v2(db, selectSQL, -1, &stmt, nil)
+        while sqlite3_step(stmt) == SQLITE_ROW {
+            let s:SensorObject = SensorObject()
+            s.name = String(cString: sqlite3_column_text(stmt, 0))
+            s.decsription = String(cString: sqlite3_column_text(stmt, 1))
+            sensors.append(s)
+        }
+        sqlite3_finalize(stmt)
+        return sensors
+    }
+    
+    
     func generateReadings(number: Int) {
         let startTime = NSDate()
+        let sensors: [SensorObject] = loadSensors()
+        print(sensors);
+        var insertSQL = "BEGIN TRANSACTION;";
         for _ in 1...number {
             let value = randomFloat(min: 0.0, max: 100.0)
             let timestamp = generateRandomDate(daysBack: 365)
-            self.saveReading(value: value, timestamp: timestamp!)
+            let sensorName = sensors[Int(arc4random_uniform(UInt32(sensors.count)))].name
+            insertSQL.append("INSERT INTO readings (value, timestamp, sensor_name) VALUES ('\(value)', '\(timestamp)', '\(sensorName)');")
         }
+        insertSQL.append("COMMIT;")
+        if sqlite3_exec(db, insertSQL, nil, nil, nil) != SQLITE_OK {
+            let errmsg = String(cString: sqlite3_errmsg(db)!)
+            print("error 'generateReadings': \(errmsg)")
+            sqlite3_exec(db, "END;", nil, nil, nil)
+        }
+
         let finishTime = NSDate()
         let measuredTime = finishTime.timeIntervalSince(startTime as Date)
         print("generateReadings: \(measuredTime)")
@@ -64,8 +91,10 @@ class HomeController: UIViewController {
     }
     
     @IBAction func clearReadings(_ sender: UIButton) {
-
-        
+        if sqlite3_exec(db, "DELETE FROM readings", nil, nil, nil) != SQLITE_OK {
+            let errmsg = String(cString: sqlite3_errmsg(db)!)
+            print("error clearing 'readings': \(errmsg)")
+        }
     }
 
     
@@ -94,25 +123,44 @@ class HomeController: UIViewController {
     }
     
     @IBAction func findLargestAndSmallestReading(_ sender: UIButton) {
-    
+        var stmt: OpaquePointer? = nil
+        let selectSQL = "SELECT min(value), max(value) FROM readings"
+        sqlite3_prepare_v2(db, selectSQL, -1, &stmt, nil)
+        resultsTextView.text = ""
+        while sqlite3_step(stmt) == SQLITE_ROW {
+            resultsTextView.text.append("Min: \(Float(sqlite3_column_double(stmt, 0)))\n")
+            resultsTextView.text.append("Max: \(Float(sqlite3_column_double(stmt, 1)))")
+        }
+        sqlite3_finalize(stmt)
     }
     
     
     @IBAction func averageOfAllReadings(_ sender: UIButton) {
-
+        var stmt: OpaquePointer? = nil
+        let selectSQL = "SELECT avg(value) FROM readings"
+        sqlite3_prepare_v2(db, selectSQL, -1, &stmt, nil)
+        resultsTextView.text = ""
+        while sqlite3_step(stmt) == SQLITE_ROW {
+            resultsTextView.text.append("Average of all readings:\n\(Float(sqlite3_column_double(stmt, 0)))")
+        }
+        sqlite3_finalize(stmt)
 
     }
     
     @IBAction func averageGroupedBySensor(_ sender: Any) {
-  
+        var stmt: OpaquePointer? = nil
+        let selectSQL = "SELECT sensor_name, avg(value) FROM readings GROUP BY sensor_name"
+        sqlite3_prepare_v2(db, selectSQL, -1, &stmt, nil)
+        resultsTextView.text = "Average of readings by sensor:\n"
+        
+        while sqlite3_step(stmt) == SQLITE_ROW {
+            resultsTextView.text.append("\(Float(sqlite3_column_double(stmt, 1)))\n")
+        }
+        sqlite3_finalize(stmt)
     }
     
     // SENSORS
-    func generateSensors(number: Int) {
-        if(self.checkIfSensorsGenerated()){
-            return
-        }
-        
+    func generateSensors(number: Int) {       
         var insertSQL = "BEGIN TRANSACTION;";
         for n in 1...number {
             let name = "S" + (n > 9 ? String(n) : "0"+String(n))
@@ -120,14 +168,15 @@ class HomeController: UIViewController {
             insertSQL.append("INSERT INTO sensors (name, description) VALUES ('\(name)', '\(description)');")
         }
         insertSQL.append("COMMIT;")
-        sqlite3_exec(db, insertSQL, nil, nil, nil)
-        
-        
-    }
+        if sqlite3_exec(db, insertSQL, nil, nil, nil) != SQLITE_OK {
+            
+            let errmsg = String(cString: sqlite3_errmsg(db)!)
+            print("error 'generatingSensors': \(errmsg)")
+            sqlite3_exec(db, "END;", nil, nil, nil)
+        }
 
-    func checkIfSensorsGenerated() -> Bool {
         
-            return false
+        
     }
     
 }

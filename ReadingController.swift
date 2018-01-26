@@ -9,7 +9,6 @@
 import UIKit
 import CoreData
 
-
 class ReadingTableViewCell: UITableViewCell {
     
     @IBOutlet weak var sensorNameLabel: UILabel!
@@ -19,11 +18,21 @@ class ReadingTableViewCell: UITableViewCell {
 
 class ReadingController: UIViewController, UITableViewDataSource {
     
-    
-    var readings:[NSManagedObject] = []
+    var db: OpaquePointer? = nil
+    var readings:[ReadingObject] = []
     @IBOutlet weak var readingsTableView: UITableView!
     
     override func viewDidLoad() {
+        let docDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        
+        let dbFilePath = NSURL(fileURLWithPath: docDir).appendingPathComponent("demo.db")?.path
+        
+        if sqlite3_open(dbFilePath, &db) == SQLITE_OK {
+            print("ok")
+        } else {
+            print("fail")
+        }
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,29 +49,24 @@ class ReadingController: UIViewController, UITableViewDataSource {
         let reading = readings[indexPath.row]
         
         let cell = readingsTableView.dequeueReusableCell(withIdentifier: "ReadingCell", for: indexPath) as! ReadingTableViewCell
-        cell.readingValueLabel?.text = String(describing: reading.value(forKey: "value")!)
-        let sensor:NSManagedObject = reading.value(forKey: "sensor") as! NSManagedObject
-        
-        cell.sensorNameLabel?.text = String(describing: sensor.value(forKey: "name")!)
+        cell.readingValueLabel?.text = String(reading.value)
+        cell.sensorNameLabel?.text = reading.sensor_name
         return cell
     }
     
     
     func loadReadings() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
+        var stmt: OpaquePointer? = nil
+        let selectSQL = "SELECT value, timestamp, sensor_name FROM readings;"
+        sqlite3_prepare_v2(db, selectSQL, -1, &stmt, nil)
+        while sqlite3_step(stmt) == SQLITE_ROW {
+            let s:ReadingObject = ReadingObject()
+            s.value = Float(sqlite3_column_double(stmt, 0))
+            //s.timestamp = String(cString: sqlite3_column_text(stmt, 1))
+            s.sensor_name = String(cString: sqlite3_column_text(stmt, 2))
+            self.readings.append(s)
         }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Reading")
-        
-        do {
-            readings = try managedContext.fetch(fetchRequest)
-            
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-        }
-
+        sqlite3_finalize(stmt)
     }
     
     

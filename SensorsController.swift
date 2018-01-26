@@ -9,11 +9,6 @@
 import UIKit
 import CoreData
 
-class SensorObject {
-    var name: String = ""
-    var decsription: String = ""
-}
-
 class SensorViewTableCell: UITableViewCell {
     
     @IBOutlet weak var sensorDescLabel: UILabel!

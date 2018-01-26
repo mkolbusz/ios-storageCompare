@@ -12,6 +12,8 @@
 		84ECB11A1FFB947B0044BBB3 /* SensorsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ECB1191FFB947B0044BBB3 /* SensorsController.swift */; };
 		84FDFE931FF565C500507D9F /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FDFE921FF565C500507D9F /* HomeController.swift */; };
 		AC44E3A9201B6E9D00CADD7C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AC44E3A8201B6E9D00CADD7C /* libsqlite3.tbd */; };
+		AC44E3AB201B86DD00CADD7C /* SensorObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC44E3AA201B86DD00CADD7C /* SensorObject.swift */; };
+		AC44E3AD201B875E00CADD7C /* ReadingObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC44E3AC201B875E00CADD7C /* ReadingObject.swift */; };
 		ACE570D31FDA9CDF0045296D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE570D21FDA9CDF0045296D /* AppDelegate.swift */; };
 		ACE570D51FDA9CDF0045296D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE570D41FDA9CDF0045296D /* ViewController.swift */; };
 		ACE570D81FDA9CDF0045296D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACE570D61FDA9CDF0045296D /* Main.storyboard */; };
@@ -46,6 +48,8 @@
 		84FDFE921FF565C500507D9F /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		AC44E3A6201B6D0C00CADD7C /* storageComapre-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "storageComapre-Bridging-Header.h"; path = "storageComapre/storageComapre-Bridging-Header.h"; sourceTree = "<group>"; };
 		AC44E3A8201B6E9D00CADD7C /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		AC44E3AA201B86DD00CADD7C /* SensorObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorObject.swift; sourceTree = "<group>"; };
+		AC44E3AC201B875E00CADD7C /* ReadingObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadingObject.swift; sourceTree = "<group>"; };
 		ACE570CF1FDA9CDF0045296D /* storageComapre.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = storageComapre.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACE570D21FDA9CDF0045296D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ACE570D41FDA9CDF0045296D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -132,6 +136,8 @@
 				ACE570E11FDA9CDF0045296D /* Info.plist */,
 				ACE570D91FDA9CDF0045296D /* storageComapre.xcdatamodeld */,
 				843FED5A1FFD931B00AEE4A1 /* Random.swift */,
+				AC44E3AA201B86DD00CADD7C /* SensorObject.swift */,
+				AC44E3AC201B875E00CADD7C /* ReadingObject.swift */,
 			);
 			path = storageComapre;
 			sourceTree = "<group>";
@@ -292,8 +298,10 @@
 				ACE570DB1FDA9CDF0045296D /* storageComapre.xcdatamodeld in Sources */,
 				84ECB11A1FFB947B0044BBB3 /* SensorsController.swift in Sources */,
 				ACE570D51FDA9CDF0045296D /* ViewController.swift in Sources */,
+				AC44E3AD201B875E00CADD7C /* ReadingObject.swift in Sources */,
 				842204621FFBD43500EF5050 /* ReadingController.swift in Sources */,
 				ACE570D31FDA9CDF0045296D /* AppDelegate.swift in Sources */,
+				AC44E3AB201B86DD00CADD7C /* SensorObject.swift in Sources */,
 				843FED5B1FFD931B00AEE4A1 /* Random.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
