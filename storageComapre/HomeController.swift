@@ -94,14 +94,12 @@ class HomeController: UIViewController {
         
         
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Sensor")
-        let df = DateFormatter()
-        df.dateFormat = "yyyy-MM-dd HH:mm:ss"
         do {
             let sensors = try managedContext.fetch(fetchRequest)
             let index = Int(arc4random_uniform(UInt32(sensors.count)))
             if let sensor = sensors[index] as NSManagedObject? {
                 reading.setValue(value, forKey: "value")
-                reading.setValue(df.string(from: timestamp), forKey: "timestamp")
+                reading.setValue(timestamp, forKey: "timestamp")
                 reading.setValue(sensor, forKey: "sensor")
             }
             
@@ -205,12 +203,12 @@ class HomeController: UIViewController {
         fetchRequest.propertiesToFetch = [exDesc]
         fetchRequest.propertiesToGroupBy = ["sensor"]
         
-        do {
+        do {		
             let startTime = NSDate()
             let result = try managedContext.fetch(fetchRequest)
             let finishTime = NSDate()
             let measuredTime = finishTime.timeIntervalSince(startTime as Date)
-            print("averageOfAllReadings: \(measuredTime)")
+            print("averageGroupedBySensor: \(measuredTime)")
             resultsTextView.text = ""
             resultsTextView.text = "Average value of each sensor:\n"
             for avg in result {
