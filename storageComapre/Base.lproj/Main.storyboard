@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="uAr-QX-dpW">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G18013" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="uAr-QX-dpW">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -236,6 +236,9 @@
                                         <rect key="frame" x="0.0" y="78" width="370" height="30"/>
                                         <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.0"/>
                                         <state key="normal" title="Calculate average grouped by sensor name"/>
+                                        <connections>
+                                            <action selector="averageGroupedBySensor:" destination="Xiz-FX-imx" eventType="touchUpInside" id="bcJ-vs-I3b"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -245,60 +248,15 @@
                                     <constraint firstAttribute="trailing" secondItem="tEM-ZP-WuV" secondAttribute="trailing" constant="58" id="cfJ-dP-bug"/>
                                 </constraints>
                             </stackView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="D63-9W-cuE">
-                                <rect key="frame" x="16" y="293" width="343" height="317"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="G9I-Zp-OFf">
+                                <rect key="frame" x="16" y="276" width="343" height="318"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ResultCell" id="EAd-XI-g5c" customClass="ReadingTableViewCell" customModule="storageComapre" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="343" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EAd-XI-g5c" id="ZYb-Xt-Boo">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="from" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cL4-q3-SNA">
-                                                    <rect key="frame" x="158.5" y="14.5" width="26.5" height="14.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZeG-BJ-23L">
-                                                    <rect key="frame" x="32" y="12" width="42" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aot-bB-Qai">
-                                                    <rect key="frame" x="257" y="12" width="42" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="ZeG-BJ-23L" firstAttribute="centerY" secondItem="ZYb-Xt-Boo" secondAttribute="centerY" id="8Kl-uV-F6O"/>
-                                                <constraint firstItem="ZeG-BJ-23L" firstAttribute="leading" secondItem="ZYb-Xt-Boo" secondAttribute="leadingMargin" constant="24" id="CSM-7L-u8i"/>
-                                                <constraint firstItem="cL4-q3-SNA" firstAttribute="centerX" secondItem="ZYb-Xt-Boo" secondAttribute="centerX" id="L7D-Xd-d54"/>
-                                                <constraint firstItem="cL4-q3-SNA" firstAttribute="centerX" secondItem="ZYb-Xt-Boo" secondAttribute="centerX" id="WQd-0p-XXQ"/>
-                                                <constraint firstItem="Aot-bB-Qai" firstAttribute="centerY" secondItem="ZYb-Xt-Boo" secondAttribute="centerY" id="d26-OR-CFI"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Aot-bB-Qai" secondAttribute="trailing" constant="36" id="pcJ-9g-qlw"/>
-                                                <constraint firstItem="cL4-q3-SNA" firstAttribute="centerY" secondItem="ZYb-Xt-Boo" secondAttribute="centerY" id="rmG-34-ZSA"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="readingValueLabel" destination="ZeG-BJ-23L" id="u5S-Qz-5kT"/>
-                                            <outlet property="sensorNameLabel" destination="Aot-bB-Qai" id="7Tf-UZ-ddR"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="Xiz-FX-imx" id="iYP-O0-ZDg"/>
-                                </connections>
-                            </tableView>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="D63-9W-cuE" firstAttribute="top" secondItem="U1c-Nm-V25" secondAttribute="bottom" constant="273" id="0Ln-ly-FZy"/>
                             <constraint firstItem="zeD-Zn-eCU" firstAttribute="top" secondItem="LxX-dc-JX0" secondAttribute="bottom" constant="509" id="20r-No-Yb1"/>
                             <constraint firstItem="Kjz-Rb-b5i" firstAttribute="top" secondItem="U1c-Nm-V25" secondAttribute="bottom" constant="140" id="3uI-6l-Bc9"/>
                             <constraint firstAttribute="leadingMargin" secondItem="0nz-Uu-XXG" secondAttribute="leading" id="5Q0-BU-DNK"/>
@@ -306,25 +264,24 @@
                             <constraint firstItem="zeD-Zn-eCU" firstAttribute="top" secondItem="gML-yH-Dla" secondAttribute="bottom" constant="509" id="8cD-GC-q3K"/>
                             <constraint firstItem="zeD-Zn-eCU" firstAttribute="top" secondItem="djm-Pt-XGo" secondAttribute="bottom" constant="509" id="Clq-UQ-czu"/>
                             <constraint firstItem="djm-Pt-XGo" firstAttribute="top" secondItem="U1c-Nm-V25" secondAttribute="bottom" constant="59" id="F9B-1K-qtc"/>
-                            <constraint firstItem="zeD-Zn-eCU" firstAttribute="top" secondItem="D63-9W-cuE" secondAttribute="bottom" constant="8" id="Jgr-07-Bxw"/>
+                            <constraint firstItem="G9I-Zp-OFf" firstAttribute="top" secondItem="U1c-Nm-V25" secondAttribute="bottom" constant="256" id="LMj-dG-dYC"/>
                             <constraint firstAttribute="trailingMargin" secondItem="djm-Pt-XGo" secondAttribute="trailing" constant="19" id="NC1-XG-ORQ"/>
                             <constraint firstItem="gML-yH-Dla" firstAttribute="top" secondItem="U1c-Nm-V25" secondAttribute="bottom" constant="59" id="Pua-Ze-4Qq"/>
                             <constraint firstItem="Kjz-Rb-b5i" firstAttribute="leading" secondItem="imz-9C-MBe" secondAttribute="leadingMargin" constant="-11" id="UCy-4z-fMM"/>
                             <constraint firstItem="LxX-dc-JX0" firstAttribute="top" secondItem="U1c-Nm-V25" secondAttribute="bottom" constant="59" id="Uy8-vs-LMC"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="G9I-Zp-OFf" secondAttribute="leading" id="WgD-3g-ciy"/>
                             <constraint firstAttribute="trailingMargin" secondItem="LxX-dc-JX0" secondAttribute="trailing" constant="92" id="akc-zl-YA6"/>
                             <constraint firstAttribute="leadingMargin" secondItem="gML-yH-Dla" secondAttribute="leading" id="cS8-Wj-3vt"/>
                             <constraint firstItem="0nz-Uu-XXG" firstAttribute="top" secondItem="U1c-Nm-V25" secondAttribute="bottom" constant="30" id="kRG-gx-I2r"/>
-                            <constraint firstItem="D63-9W-cuE" firstAttribute="leading" secondItem="imz-9C-MBe" secondAttribute="leadingMargin" id="kVM-cc-f10"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="D63-9W-cuE" secondAttribute="leading" id="lYF-on-3Wa"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="G9I-Zp-OFf" secondAttribute="trailing" id="l9g-vu-bep"/>
+                            <constraint firstItem="zeD-Zn-eCU" firstAttribute="top" secondItem="G9I-Zp-OFf" secondAttribute="bottom" constant="24" id="mHt-45-1zz"/>
                             <constraint firstItem="zeD-Zn-eCU" firstAttribute="top" secondItem="Kjz-Rb-b5i" secondAttribute="bottom" constant="350" id="pIE-G0-zl4"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="D63-9W-cuE" secondAttribute="trailing" id="pzR-DC-cfE"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="D63-9W-cuE" secondAttribute="trailing" id="zhz-Ya-hhb"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Results" id="xEb-a1-vQ7"/>
                     <connections>
                         <outlet property="numberTxt" destination="gML-yH-Dla" id="noj-ob-AAC"/>
-                        <outlet property="resultsTableView" destination="D63-9W-cuE" id="iPX-Th-Rd1"/>
+                        <outlet property="resultsTextView" destination="G9I-Zp-OFf" id="5Ig-ik-mtf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4ZM-pE-D8R" userLabel="First Responder" sceneMemberID="firstResponder"/>
