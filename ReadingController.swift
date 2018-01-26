@@ -12,6 +12,7 @@ import CoreData
 
 class ReadingTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var timestampLabel: UILabel!
     @IBOutlet weak var sensorNameLabel: UILabel!
     @IBOutlet weak var readingValueLabel: UILabel!
 }
@@ -42,7 +43,12 @@ class ReadingController: UIViewController, UITableViewDataSource {
         cell.readingValueLabel?.text = String(describing: reading.value(forKey: "value")!)
         let sensor:NSManagedObject = reading.value(forKey: "sensor") as! NSManagedObject
         
+        
         cell.sensorNameLabel?.text = String(describing: sensor.value(forKey: "name")!)
+        
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        cell.timestampLabel?.text = df.string(for: reading.value(forKey: "timestamp"))
         return cell
     }
     

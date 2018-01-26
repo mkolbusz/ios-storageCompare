@@ -12,7 +12,6 @@
 		84ECB11A1FFB947B0044BBB3 /* SensorsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ECB1191FFB947B0044BBB3 /* SensorsController.swift */; };
 		84FDFE931FF565C500507D9F /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FDFE921FF565C500507D9F /* HomeController.swift */; };
 		ACE570D31FDA9CDF0045296D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE570D21FDA9CDF0045296D /* AppDelegate.swift */; };
-		ACE570D51FDA9CDF0045296D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE570D41FDA9CDF0045296D /* ViewController.swift */; };
 		ACE570D81FDA9CDF0045296D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACE570D61FDA9CDF0045296D /* Main.storyboard */; };
 		ACE570DB1FDA9CDF0045296D /* storageComapre.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ACE570D91FDA9CDF0045296D /* storageComapre.xcdatamodeld */; };
 		ACE570DD1FDA9CDF0045296D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACE570DC1FDA9CDF0045296D /* Assets.xcassets */; };
@@ -45,7 +44,6 @@
 		84FDFE921FF565C500507D9F /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		ACE570CF1FDA9CDF0045296D /* storageComapre.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = storageComapre.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACE570D21FDA9CDF0045296D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		ACE570D41FDA9CDF0045296D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		ACE570D71FDA9CDF0045296D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ACE570DA1FDA9CDF0045296D /* storageComapre.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = storageComapre.xcdatamodel; sourceTree = "<group>"; };
 		ACE570DC1FDA9CDF0045296D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -111,7 +109,6 @@
 				84ECB1191FFB947B0044BBB3 /* SensorsController.swift */,
 				84FDFE921FF565C500507D9F /* HomeController.swift */,
 				ACE570D21FDA9CDF0045296D /* AppDelegate.swift */,
-				ACE570D41FDA9CDF0045296D /* ViewController.swift */,
 				ACE570D61FDA9CDF0045296D /* Main.storyboard */,
 				ACE570DC1FDA9CDF0045296D /* Assets.xcassets */,
 				ACE570DE1FDA9CDF0045296D /* LaunchScreen.storyboard */,
@@ -277,7 +274,6 @@
 				84FDFE931FF565C500507D9F /* HomeController.swift in Sources */,
 				ACE570DB1FDA9CDF0045296D /* storageComapre.xcdatamodeld in Sources */,
 				84ECB11A1FFB947B0044BBB3 /* SensorsController.swift in Sources */,
-				ACE570D51FDA9CDF0045296D /* ViewController.swift in Sources */,
 				842204621FFBD43500EF5050 /* ReadingController.swift in Sources */,
 				ACE570D31FDA9CDF0045296D /* AppDelegate.swift in Sources */,
 				843FED5B1FFD931B00AEE4A1 /* Random.swift in Sources */,
