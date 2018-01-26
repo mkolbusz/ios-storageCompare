@@ -14,10 +14,10 @@ class SensorObject {
     var decsription: String = ""
 }
 
-class ReadingTableViewCell: UITableViewCell {
+class SensorViewTableCell: UITableViewCell {
     
+    @IBOutlet weak var sensorDescLabel: UILabel!
     @IBOutlet weak var sensorNameLabel: UILabel!
-    @IBOutlet weak var readingValueLabel: UILabel!
 }
 
 class SensorsController: UIViewController, UITableViewDataSource {
@@ -50,18 +50,16 @@ class SensorsController: UIViewController, UITableViewDataSource {
     }
     
     func loadSensors() {
-        let selectSQL = "SELECT * FROM sensors"
-        sqlite3_exec(db, selectSQL,
-                     {_, columnCount, values, columns in
-                        print("Next record")
-                        for i in 0 ..< Int(columnCount) {
-                            let s :SensorObject
-                            s.name = String(cString: columns![i]!)
-                            s.decsription = String(cString: values![i]!)
-                            print("  \(s.name):\(s.decsription)")
-                        }
-                        return 0
-        }, nil, nil)
+        var stmt: OpaquePointer? = nil
+        let selectSQL = "SELECT * FROM sensors;"
+        sqlite3_prepare_v2(db, selectSQL, -1, &stmt, nil)
+        while sqlite3_step(stmt) == SQLITE_ROW {
+            let s:SensorObject = SensorObject()
+            s.name = String(cString: sqlite3_column_text(stmt, 0))
+            s.decsription = String(cString: sqlite3_column_text(stmt, 1))
+            self.sensors.append(s)
+        }
+        sqlite3_finalize(stmt)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -72,7 +70,6 @@ class SensorsController: UIViewController, UITableViewDataSource {
         let sensor = sensors[indexPath.row]
         
         let cell = sensorsTableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SensorViewTableCell
-//        cell.textLabel?.text = sensor.value(forKey: "name") as? String
         cell.sensorNameLabel?.text = sensor.name
         cell.sensorDescLabel?.text = sensor.decsription
         return cell

@@ -144,6 +144,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="sensorDescLabel" destination="EfD-A7-Nhk" id="0E9-o5-Kef"/>
+                                            <outlet property="sensorNameLabel" destination="7X4-sa-kzY" id="81q-r5-MRT"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

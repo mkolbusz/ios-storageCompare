@@ -19,6 +19,7 @@ class ReadingTableViewCell: UITableViewCell {
 
 class ReadingController: UIViewController, UITableViewDataSource {
     
+    
     var readings:[NSManagedObject] = []
     @IBOutlet weak var readingsTableView: UITableView!
     
