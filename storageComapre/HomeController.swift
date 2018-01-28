@@ -24,15 +24,52 @@ class HomeController: UIViewController {
     
     
     func generateReadings(number: Int) {
-        let startTime = NSDate()
+        
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let sensors = getSensors(managedContext: managedContext)
+        
         for _ in 1...number {
             let value = randomFloat(min: 0.0, max: 100.0)
             let timestamp = generateRandomDate(daysBack: 365)
-            self.saveReading(value: value, timestamp: timestamp!)
+            
+            let entity = NSEntityDescription.entity(forEntityName: "Reading", in: managedContext)!
+            let reading = NSManagedObject(entity: entity, insertInto: managedContext)
+           
+            
+   
+                
+            let index = Int(arc4random_uniform(UInt32(sensors.count)))
+            if let sensor = sensors[index] as NSManagedObject? {
+                reading.setValue(value, forKey: "value")
+                reading.setValue(timestamp, forKey: "timestamp")
+                reading.setValue(sensor, forKey: "sensor")
+            }
+        }
+        let startTime = NSDate()
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
         }
         let finishTime = NSDate()
         let measuredTime = finishTime.timeIntervalSince(startTime as Date)
         print("generateReadings: \(measuredTime)")
+    }
+    
+    func getSensors(managedContext: NSManagedObjectContext) -> [NSManagedObject] {
+         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Sensor")
+        do {
+            let sensors = try managedContext.fetch(fetchRequest)
+            return sensors
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+            return []
+        }
     }
     
     
@@ -84,34 +121,10 @@ class HomeController: UIViewController {
     }
     
     func saveReading(value: Float, timestamp: Date) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Reading", in: managedContext)!
-        let reading = NSManagedObject(entity: entity, insertInto: managedContext)
+       
         
         
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Sensor")
-        do {
-            let sensors = try managedContext.fetch(fetchRequest)
-            let index = Int(arc4random_uniform(UInt32(sensors.count)))
-            if let sensor = sensors[index] as NSManagedObject? {
-                reading.setValue(value, forKey: "value")
-                reading.setValue(timestamp, forKey: "timestamp")
-                reading.setValue(sensor, forKey: "sensor")
-            }
-            
-            do {
-                try managedContext.save()
-            } catch let error as NSError {
-                print("Could not save. \(error), \(error.userInfo)")
-            }
-            
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-        }
+        
         
     }
     
