@@ -20,7 +20,7 @@ class HomeController: UIViewController {
         let docDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
         
         let dbFilePath = NSURL(fileURLWithPath: docDir).appendingPathComponent("demo.db")?.path
-        
+        print(dbFilePath)
         if sqlite3_open(dbFilePath, &db) == SQLITE_OK {
             createTableIfNotExists()
         } else {
@@ -38,7 +38,7 @@ class HomeController: UIViewController {
             print("error creating table 'sensors': \(errmsg)")
         }
         
-        if sqlite3_exec(db, "CREATE TABLE IF NOT EXISTS readings (value TEXT NOT NULL PRIMARY KEY, description TEXT, timestamp DATETIME, sensor_name TEXT NOT NULL, FOREIGN KEY(sensor_name) REFERENCES sensors(name))", nil, nil, nil) != SQLITE_OK {
+        if sqlite3_exec(db, "CREATE TABLE IF NOT EXISTS readings (value TEXT NOT NULL, description TEXT, timestamp DATETIME, sensor_name TEXT NOT NULL, FOREIGN KEY(sensor_name) REFERENCES sensors(name))", nil, nil, nil) != SQLITE_OK {
             let errmsg = String(cString: sqlite3_errmsg(db)!)
             print("error creating table 'readings': \(errmsg)")
         }
@@ -68,6 +68,7 @@ class HomeController: UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         
+        let startTime = NSDate()		
         var insertSQL = "BEGIN TRANSACTION;";
         for _ in 1...number {
             let value = randomFloat(min: 0.0, max: 100.0)
@@ -76,9 +77,9 @@ class HomeController: UIViewController {
             insertSQL.append("INSERT INTO readings (value, timestamp, sensor_name) VALUES ('\(value)', '\(dateFormatter.string(from: timestamp))', '\(sensorName)');")
         }
         insertSQL.append("COMMIT;")
-        print(insertSQL)
+//        print(insertSQL)
         
-        let startTime = NSDate()
+        
         if sqlite3_exec(db, insertSQL, nil, nil, nil) != SQLITE_OK {
             let errmsg = String(cString: sqlite3_errmsg(db)!)
             print("error 'generateReadings': \(errmsg)")

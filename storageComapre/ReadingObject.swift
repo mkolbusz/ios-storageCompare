@@ -9,7 +9,7 @@
 import Foundation
 
 class ReadingObject {
-    var timestamp: NSDate = NSDate()
+    var timestamp: String = ""
     var value: Float = 0.0
     var sensor_name: String = ""
 }

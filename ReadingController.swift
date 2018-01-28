@@ -11,6 +11,7 @@ import CoreData
 
 class ReadingTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var timestampLabel: UILabel!
     @IBOutlet weak var sensorNameLabel: UILabel!
     @IBOutlet weak var readingValueLabel: UILabel!
 }
@@ -51,6 +52,7 @@ class ReadingController: UIViewController, UITableViewDataSource {
         let cell = readingsTableView.dequeueReusableCell(withIdentifier: "ReadingCell", for: indexPath) as! ReadingTableViewCell
         cell.readingValueLabel?.text = String(reading.value)
         cell.sensorNameLabel?.text = reading.sensor_name
+        cell.timestampLabel?.text = reading.timestamp
         return cell
     }
     
@@ -63,8 +65,8 @@ class ReadingController: UIViewController, UITableViewDataSource {
         while sqlite3_step(stmt) == SQLITE_ROW {
             let s:ReadingObject = ReadingObject()
             s.value = Float(sqlite3_column_double(stmt, 0))
-            //s.timestamp = String(cString: sqlite3_column_text(stmt, 1))
-            s.sensor_name = String(cString: sqlite3_column_text(stmt, 2)) + " : " + String(cString: sqlite3_column_text(stmt, 1))
+            s.timestamp = String(cString: sqlite3_column_text(stmt, 1))
+            s.sensor_name = String(cString: sqlite3_column_text(stmt, 2))
             self.readings.append(s)
         }
         sqlite3_finalize(stmt)
